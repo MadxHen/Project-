@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Multiple Disease Prediction System</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+  <div class="container">
+    <!-- Sidebar Navigation -->
+    <nav class="sidebar">
+      <div class="logo">
+        <h1>🏥 MediPredict</h1>
+      </div>
+
+      <ul class="nav-menu">
+        <li class="nav-item">
+          <a class="nav-link active" data-disease="diabetes">
+            <span>💉</span> Diabetes Prediction
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" data-disease="heart">
+            <span>❤️</span> Heart Disease
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" data-disease="parkinsons">
+            <span>🧠</span> Parkinson's Disease
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" data-disease="liver">
+            <span>🫀</span> Liver Disease
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" data-disease="hepatitis">
+            <span>🩺</span> Hepatitis
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" data-disease="jaundice">
+            <span>🟡</span> Jaundice
+          </a>
+        </li>
+      </ul>
+
+      <!-- Theme Toggle -->
+      <div class="theme-toggle">
+        <div class="toggle-switch" id="themeToggle">
+          <div class="toggle-slider">☀️</div>
+        </div>
+        <span class="theme-label">Dark Mode</span>
+      </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <header class="header">
+        <h2 id="disease-title">Diabetes Prediction</h2>
+        <p id="disease-description">Enter patient data to predict diabetes risk</p>
+      </header>
+
+      <!-- Diabetes -->
+      <section class="prediction-card active" id="diabetes-card">
+        <form id="diabetes-form">
+          <div class="form-section">
+            <h3>Patient Information</h3>
+            <div class="form-grid">
+              <div class="form-group">
+                <label>Pregnancies</label>
+                <input type="number" name="pregnancies" min="0" required />
+              </div>
+              <div class="form-group">
+                <label>Glucose (mg/dL)</label>
+                <input type="number" name="glucose" min="0" required />
+              </div>
+              <div class="form-group">
+                <label>Blood Pressure (mm Hg)</label>
+                <input type="number" name="bp" min="0" required />
+              </div>
+              <div class="form-group">
+                <label>Skin Thickness (mm)</label>
+                <input type="number" name="skin" min="0" required />
+              </div>
+              <div class="form-group">
+                <label>Insulin (μU/mL)</label>
+                <input type="number" name="insulin" min="0" required />
+              </div>
+              <div class="form-group">
+                <label>BMI</label>
+                <input type="number" step="0.1" name="bmi" min="0" required />
+              </div>
+              <div class="form-group">
+                <label>Diabetes Pedigree Function</label>
+                <input type="number" step="0.001" name="dpf" min="0" required />
+              </div>
+              <div class="form-group">
+                <label>Age</label>
+                <input type="number" name="age" min="0" required />
+              </div>
+            </div>
+          </div>
+          <button type="submit" class="btn-predict">Predict Diabetes Risk</button>
+        </form>
+        <div class="loading" id="diabetes-loading">
+          <div class="spinner"></div>
+          <p>Analyzing data...</p>
+        </div>
+        <div class="result-section" id="diabetes-result"></div>
+      </section>
+
+      <!-- Heart Disease -->
+      <section class="prediction-card" id="heart-card">
+        <form id="heart-form">
+          <div class="form-section">
+            <h3>Cardiovascular Data</h3>
+            <div class="form-grid">
+              <div class="form-group">
+                <label>Age</label>
+                <input type="number" name="age" min="0" required />
+              </div>
+              <div class="form-group">
+                <label>Sex</label>
+                <select name="sex" required>
+                  <option value="">Select</option>
+                  <option value="1">Male</option>
+                  <option value="0">Female</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label>Chest Pain Type</label>
+                <select name="cp" required>
+                  <option value="">Select</option>
+                  <option value="0">Typical Angina</option>
+                  <option value="1">Atypical Angina</option>
+                  <option value="2">Non-anginal Pain</option>
+                  <option value="3">Asymptomatic</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label>Resting BP (mm Hg)</label>
+                <input type="number" name="trestbps" min="0" required />
+              </div>
+              <div class="form-group">
+                <label>Cholesterol (mg/dL)</label>
+                <input type="number" name="chol" min="0" required />
+              </div>
+              <div class="form-group">
+                <label>Fasting Blood Sugar > 120 mg/dL</label>
+                <select name="fbs" required>
+                  <option value="">Select</option>
+                  <option value="1">Yes</option>
+                  <option value="0">No</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label>Resting ECG</label>
+                <select name="restecg" required>
+                  <option value="">Select</option>
+                  <option value="0">Normal</option>
+                  <option value="1">ST-T Abnormality</option>
+                  <option value="2">LV Hypertrophy</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label>Max Heart Rate</label>
+                <input type="number" name="thalach" min="0" required />
+              </div>
+              <div class="form-group">
+                <label>Exercise Induced Angina</label>
+                <select name="exang" required>
+                  <option value="">Select</option>
+                  <option value="1">Yes</option>
+                  <option value="0">No</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label>ST Depression</label>
+                <input type="number" step="0.1" name="oldpeak" min="0" required />
+              </div>
+            </div>
+          </div>
+          <button type="submit" class="btn-predict">Predict Heart Disease Risk</button>
+        </form>
+        <div class="loading" id="heart-loading">
+          <div class="spinner"></div>
+          <p>Analyzing data...</p>
+        </div>
+        <div class="result-section" id="heart-result"></div>
+      </section>
+
+      <!-- Parkinson's Disease -->
+      <section class="prediction-card" id="parkinsons-card">
+        <form id="parkinsons-form">
+          <div class="form-section">
+            <h3>Voice Measurement Data</h3>
+            <div class="form-grid">
+              <div class="form-group">
+                <label>MDVP:Fo(Hz)</label>
+                <input type="number" step="0.001" name="fo" min="0" required />
+              </div>
+              <div class="form-group">
+                <label>MDVP:Fhi(Hz)</label>
+                <input type="number" step="0.001" name="fhi" min="0" required />
+              </div>
+              <div class="form-group">
+                <label>MDVP:Flo(Hz)</label>
+                <input type="number" step="0.001" name="flo" min="0" required />
+              </div>
+              <div class="form-group">
+                <label>MDVP:Jitter(%)</label>
+                <input type="number" step="0.00001" name="jitter_percent" min="0" required />
+              </div>
+              <div class="form-group">
+                <label>MDVP:Jitter(Abs)</label>
+                <input type="number" step="0.000001" name="jitter_abs" min="0" required />
+              </div>
+              <div class="form-group">
+                <label>MDVP:RAP</label>
+                <input type="number" step="0.00001" name="rap" min="0" required />
+              </div>
+              <div class="form-group">
+                <label>MDVP:PPQ</label>
+                <input type="number" step="0.00001" name="ppq" min="0" required />
+              </div>
+              <div class="form-group">
+                <label>Jitter:DDP</label>
+                <input type="number" step="0.00001" name="ddp" min="0" required />
+              </div>
+              <div class="form-group">
+                <label>MDVP:Shimmer</label>
+                <input type="number" step="0.001" name="shimmer" min="0" required />
+              </div>
+              <div class="form-group">
+                <label>MDVP:Shimmer(dB)</label>
+                <input type="number" step="0.001" name="shimmer_db" min="0" required />
+              </div>
+              <div class="form-group">
+                <label>Shimmer:APQ3</label>
+                <input type="number" step="0.00001" name="apq3" min="0" required />
+              </div>
+              <div class="form-group">
+                <label>Shimmer:APQ5</label>
+                <input type="number" step="0.00001" name="apq5" min="0" required />
+              </div>
+              <div class="form-group">
+                <label>MDVP:APQ</label>
+                <input type="number" step="0.00001" name="apq" min="0" required />
+              </div>
+              <div class="form-group">
+                <label>Shimmer:DDA</label>
+                <input type="number" step="0.00001" name="dda" min="0" required />
+              </div>
+              <div class="form-group">
+                <label>NHR</label>
+                <input type="number" step="0.00001" name="nhr" min="0" required />
+              </div>
+              <div class="form-group">
+                <label>HNR</label>
+                <input type="number" step="0.001" name="hnr" min="0" required />
+              </div>
+              <div class="form-group">
+                <label>RPDE</label>
+                <input type="number" step="0.000001" name="rpde" min="0" max="1" required />
+              </div>
+              <div class="form-group">
+                <label>DFA</label>
+                <input type="number" step="0.000001" name="dfa" min="0" max="1" required />
+              </div>
+              <div class="form-group">
+                <label>Spread1</label>
+                <input type="number" step="0.000001" name="spread1" required />
+              </div>
+              <div class="form-group">
+                <label>Spread2</label>
+                <input type="number" step="0.000001" name="spread2" min="0" required />
+              </div>
+              <div class="form-group">
+                <label>D2</label>
+                <input type="number" step="0.000001" name="d2" min="0" required />
+              </div>
+              <div class="form-group">
+                <label>PPE</label>
+                <input type="number" step="0.000001" name="ppe" min="0" max="1" required />
+              </div>
+            </div>
+          </div>
+          <button type="submit" class="btn-predict">Predict Parkinson's Risk</button>
+        </form>
+        <div class="loading" id="parkinsons-loading">
+          <div class="spinner"></div>
+          <p>Analyzing data...</p>
+        </div>
+        <div class="result-section" id="parkinsons-result"></div>
+      </section>
+
+      <!-- Liver Disease -->
+      <section class="prediction-card" id="liver-card">
+        <form id="liver-form">
+          <div class="form-section">
+            <h3>Liver Function Test Results</h3>
+            <div class="form-grid">
+              <div class="form-group">
+                <label>Age</label>
+                <input type="number" name="age" min="0" required />
+              </div>
+              <div class="form-group">
+                <label>Gender</label>
+                <select name="gender" required>
+                  <option value="">Select</option>
+                  <option value="1">Male</option>
+                  <option value="0">Female</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label>Total Bilirubin (mg/dL)</label>
+                <input type="number" step="0.1" name="tb" min="0" required />
+              </div>
+              <div class="form-group">
+                <label>Direct Bilirubin (mg/dL)</label>
+                <input type="number" step="0.1" name="db" min="0" required />
+              </div>
+              <div class="form-group">
+                <label>Alkaline Phosphatase (IU/L)</label>
+                <input type="number" name="alkphos" min="0" required />
+              </div>
+              <div class="form-group">
+                <label>Alamine Aminotransferase (IU/L)</label>
+                <input type="number" name="sgpt" min="0" required />
+              </div>
+              <div class="form-group">
+                <label>Aspartate Aminotransferase (IU/L)</label>
+                <input type="number" name="sgot" min="0" required />
+              </div>
+              <div class="form-group">
+                <label>Total Proteins (g/dL)</label>
+                <input type="number" step="0.1" name="tp" min="0" required />
+              </div>
+              <div class="form-group">
+                <label>Albumin (g/dL)</label>
+                <input type="number" step="0.1" name="alb" min="0" required />
+              </div>
+              <div class="form-group">
+                <label>A/G Ratio</label>
+                <input type="number" step="0.01" name="ag_ratio" min="0" required />
+              </div>
+            </div>
+          </div>
+          <button type="submit" class="btn-predict">Predict Liver Disease Risk</button>
+        </form>
+        <div class="loading" id="liver-loading">
+          <div class="spinner"></div>
+          <p>Analyzing data...</p>
+        </div>
+        <div class="result-section" id="liver-result"></div>
+      </section>
+
+      <!-- Hepatitis -->
+      <section class="prediction-card" id="hepatitis-card">
+        <form id="hepatitis-form">
+          <div class="form-section">
+            <h3>Hepatitis Screening Data</h3>
+            <div class="form-grid">
+              <div class="form-group">
+                <label>Age</label>
+                <input type="number" name="age" min="0" required />
+              </div>
+              <div class="form-group">
+                <label>Sex</label>
+                <select name="sex" required>
+                  <option value="">Select</option>
+                  <option value="1">Male</option>
+                  <option value="0">Female</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label>Steroid</label>
+                <select name="steroid" required>
+                  <option value="">Select</option>
+                  <option value="1">Yes</option>
+                  <option value="0">No</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label>Antivirals</label>
+                <select name="antivirals" required>
+                  <option value="">Select</option>
+                  <option value="1">Yes</option>
+                  <option value="0">No</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label>Fatigue</label>
+                <select name="fatigue" required>
+                  <option value="">Select</option>
+                  <option value="1">Yes</option>
+                  <option value="0">No</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label>Malaise</label>
+                <select name="malaise" required>
+                  <option value="">Select</option>
+                  <option value="1">Yes</option>
+                  <option value="0">No</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label>Anorexia</label>
+                <select name="anorexia" required>
+                  <option value="">Select</option>
+                  <option value="1">Yes</option>
+                  <option value="0">No</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label>Liver Big</label>
+                <select name="liver_big" required>
+                  <option value="">Select</option>
+                  <option value="1">Yes</option>
+                  <option value="0">No</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label>Liver Firm</label>
+                <select name="liver_firm" required>
+                  <option value="">Select</option>
+                  <option value="1">Yes</option>
+                  <option value="0">No</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label>Spleen Palpable</label>
+                <select name="spleen_palpable" required>
+                  <option value="">Select</option>
+                  <option value="1">Yes</option>
+                  <option value="0">No</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label>Spiders</label>
+                <select name="spiders" required>
+                  <option value="">Select</option>
+                  <option value="1">Yes</option>
+                  <option value="0">No</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label>Ascites</label>
+                <select name="ascites" required>
+                  <option value="">Select</option>
+                  <option value="1">Yes</option>
+                  <option value="0">No</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label>Varices</label>
+                <select name="varices" required>
+                  <option value="">Select</option>
+                  <option value="1">Yes</option>
+                  <option value="0">No</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label>Bilirubin (mg/dL)</label>
+                <input type="number" step="0.1" name="bilirubin" min="0" required />
+              </div>
+              <div class="form-group">
+                <label>Alk Phosphate (IU/L)</label>
+                <input type="number" name="alk_phosphate" min="0" required />
+              </div>
+              <div class="form-group">
+                <label>SGPT (IU/L)</label>
+                <input type="number" name="sgpt" min="0" required />
+              </div>
+              <div class="form-group">
+                <label>SGOT (IU/L)</label>
+                <input type="number" name="sgot" min="0" required />
+              </div>
+              <div class="form-group">
+                <label>Albumin (g/dL)</label>
+                <input type="number" step="0.1" name="albumin" min="0" required />
+              </div>
+              <div class="form-group">
+                <label>Protime (seconds)</label>
+                <input type="number" name="protime" min="0" required />
+              </div>
+            </div>
+          </div>
+          <button type="submit" class="btn-predict">Predict Hepatitis Risk</button>
+        </form>
+        <div class="loading" id="hepatitis-loading">
+          <div class="spinner"></div>
+          <p>Analyzing data...</p>
+        </div>
+        <div class="result-section" id="hepatitis-result"></div>
+      </section>
+
+      <!-- Jaundice -->
+      <section class="prediction-card" id="jaundice-card">
+        <form id="jaundice-form">
+          <div class="form-section">
+            <h3>Jaundice Assessment Data</h3>
+            <div class="form-grid">
+              <div class="form-group">
+                <label>Age</label>
+                <input type="number" name="age" min="0" required />
+              </div>
+              <div class="form-group">
+                <label>Gender</label>
+                <select name="gender" required>
+                  <option value="">Select</option>
+                  <option value="1">Male</option>
+                  <option value="0">Female</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label>Total Bilirubin (mg/dL)</label>
+                <input type="number" step="0.1" name="total_bilirubin" min="0" required />
+              </div>
+              <div class="form-group">
+                <label>Direct Bilirubin (mg/dL)</label>
+                <input type="number" step="0.1" name="direct_bilirubin" min="0" required />
+              </div>
+              <div class="form-group">
+                <label>Alkaline Phosphatase (IU/L)</label>
+                <input type="number" name="alkaline_phosphatase" min="0" required />
+              </div>
+              <div class="form-group">
+                <label>Alamine Aminotransferase (IU/L)</label>
+                <input type="number" name="alamine_aminotransferase" min="0" required />
+              </div>
+              <div class="form-group">
+                <label>Aspartate Aminotransferase (IU/L)</label>
+                <input type="number" name="aspartate_aminotransferase" min="0" required />
+              </div>
+              <div class="form-group">
+                <label>Total Proteins (g/dL)</label>
+                <input type="number" step="0.1" name="total_proteins" min="0" required />
+              </div>
+              <div class="form-group">
+                <label>Albumin (g/dL)</label>
+                <input type="number" step="0.1" name="albumin" min="0" required />
+              </div>
+              <div class="form-group">
+                <label>Albumin/Globulin Ratio</label>
+                <input type="number" step="0.01" name="ag_ratio" min="0" required />
+              </div>
+              <div class="form-group">
+                <label>Yellow Eyes</label>
+                <select name="yellow_eyes" required>
+                  <option value="">Select</option>
+                  <option value="1">Yes</option>
+                  <option value="0">No</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label>Yellow Skin</label>
+                <select name="yellow_skin" required>
+                  <option value="">Select</option>
+                  <option value="1">Yes</option>
+                  <option value="0">No</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label>Dark Urine</label>
+                <select name="dark_urine" required>
+                  <option value="">Select</option>
+                  <option value="1">Yes</option>
+                  <option value="0">No</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label>Pale Stool</label>
+                <select name="pale_stool" required>
+                  <option value="">Select</option>
+                  <option value="1">Yes</option>
+                  <option value="0">No</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <button type="submit" class="btn-predict">Predict Jaundice Risk</button>
+        </form>
+        <div class="loading" id="jaundice-loading">
+          <div class="spinner"></div>
+          <p>Analyzing data...</p>
+        </div>
+        <div class="result-section" id="jaundice-result"></div>
+      </section>
+    </main>
+  </div>
+
+  <script src="interact1.js"></script>
+</body>
+</html>
